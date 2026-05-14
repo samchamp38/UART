@@ -1,4 +1,4 @@
-`include "topmod.v"
+`include "simtopmod.v"
 
 module uarttoptb;
 reg clk,rst,txstart;
