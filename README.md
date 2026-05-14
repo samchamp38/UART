@@ -1,73 +1,73 @@
 # UART Loopback Communication System using Verilog HDL
 
-A complete UART (Universal Asynchronous Receiver Transmitter) communication system designed and implemented in Verilog HDL featuring modular RTL architecture, simulation verification, and FPGA deployment on the Basys3 FPGA board. The project demonstrates serial communication between UART transmitter and receiver modules through loopback operation, where transmitted data is received back and displayed in real time on FPGA hardware.
+A UART (Universal Asynchronous Receiver Transmitter) communication system designed and implemented in Verilog HDL using a modular RTL architecture. The project was simulated, verified, and deployed on the Basys3 FPGA board for real-time hardware validation.
 
-The design was successfully verified through functional simulation and hardware implementation using the Basys3 FPGA board. Data entered through a serial terminal is transmitted serially, received correctly by the UART receiver, and displayed on the onboard seven-segment display for real-time validation.
+The design implements UART transmission and reception using separate FSM-based TX and RX modules connected in loopback configuration. Data transmitted serially is received back correctly and verified through simulation as well as FPGA hardware testing.
 
-The system also includes baud rate generation, clock division, finite state machine (FSM) based UART transmission and reception, and seven-segment display interfacing for hardware visualization.
+The UART communication uses a standard **8N1 frame format**:
+- 1 Start Bit
+- 8 Data Bits
+- No Parity Bit
+- 1 Stop Bit
 
-The UART design was fully simulated, synthesized, and verified on real FPGA hardware.
+The baud rate generator was designed for **9600 baud communication** using the 100 MHz Basys3 onboard clock.
 
 ---
 
 # Project Overview
 
-This project implements a UART serial communication system using Verilog HDL. The design consists of UART transmitter and receiver modules integrated in a loopback configuration for complete communication verification.
+This project implements a complete UART communication system using Verilog HDL. The transmitter converts 8-bit parallel data into serial format, while the receiver reconstructs the serial stream back into parallel data.
+
+The project includes:
+- UART Transmitter (`tx.v`)
+- UART Receiver (`rx.v`)
+- Baud Rate Generator (`baudgen.v`)
+- UART Top Module (`simtopmod.v`)
+- Simulation Testbench (`simtopmodtb.v`)
+- FPGA Hardware Top Module (`vivadotop.v`)
 
 The system was:
-
 - Designed using Verilog HDL
-- Simulated and verified using Icarus Verilog and GTKWave
-- Synthesized and deployed on the Basys3 FPGA board
-- Tested using serial communication through PuTTY terminal
-- Integrated with seven-segment display hardware for real-time output monitoring
-
-The UART transmitter converts parallel input data into serial format, while the receiver reconstructs the serial data back into parallel form. The transmitted and received data were successfully verified both in simulation and on FPGA hardware.
-
-The project was implemented and tested using Xilinx Vivado on the Basys3 FPGA development board.
+- Simulated using Icarus Verilog and GTKWave
+- Synthesized and implemented using Xilinx Vivado
+- Verified on the Basys3 FPGA board
+- Tested using PuTTY serial terminal communication
 
 ---
 
 # Key Features
 
 - UART Transmitter and Receiver implementation
-- Full duplex serial communication architecture
-- Modular RTL design using Verilog HDL
-- FSM-based UART transmission and reception
-- Baud rate generator for UART timing
-- Clock divider for Basys3 100 MHz system clock
-- Serial-to-parallel and parallel-to-serial data conversion
-- Loopback communication verification
-- Seven-segment display interfacing
-- Real-time hardware output visualization
+- FSM-based serial communication
+- 9600 baud rate operation
+- Standard 8N1 UART frame format
+- Modular RTL design
+- Separate TX and RX baud tick generation
+- Loopback communication testing
+- Push-button triggered transmission
+- LED and seven-segment display interfacing
 - Functional simulation testbench
-- XDC constraint file for Basys3 FPGA board
-- Successfully synthesized and deployed on FPGA hardware
+- FPGA hardware verification on Basys3
 
 ---
 
-# RTL Modules
+# Simulation Verification
 
-The project consists of the following RTL modules:
+The testbench transmits multiple 8-bit values through the UART transmitter and verifies that the receiver reconstructs the same data correctly.
 
-- UART Transmitter
-- UART Receiver
-- Baud Rate Generator
-- Clock Divider
-- Transmitter FSM
-- Receiver FSM
-- Seven Segment Display Controller
-- Binary to Seven Segment Decoder
-- Top Module
-- Testbench
+Simulation was performed using:
+- Icarus Verilog
+- GTKWave
+
+The transmitted and received outputs matched successfully for all tested values.
 
 ---
 
-# Hardware Verification
+# FPGA Hardware Verification
 
-The UART system was verified on the Basys3 FPGA board using serial terminal communication through PuTTY. ASCII characters entered through the keyboard were transmitted serially by the UART transmitter, received by the UART receiver, and displayed correctly on the FPGA hardware.
+The design was successfully deployed on the Basys3 FPGA board using Xilinx Vivado.
 
-The successful loopback operation confirmed correct UART frame generation, serial data transmission, reception, and data reconstruction.
+UART communication was tested using the PuTTY serial terminal. Data transmitted from the FPGA was received correctly, while received UART data was displayed using onboard LEDs and seven-segment displays for real-time verification.
 
 ---
 
@@ -84,25 +84,24 @@ The successful loopback operation confirmed correct UART frame generation, seria
 
 # Applications
 
-- Serial communication systems
-- FPGA-based embedded systems
-- UART protocol learning and verification
-- Digital system design education
-- FPGA hardware debugging and testing
+- FPGA-based serial communication
+- Embedded system design
+- UART protocol learning
+- Digital communication systems
+- Hardware verification and testing
 
 ---
 
 # Future Improvements
 
-- Configurable baud rate selection
+- Configurable baud rate support
 - FIFO buffer integration
+- Parity and framing error detection
+- Full duplex UART communication
 - UART interrupt support
-- Full duplex communication enhancement
-- Error detection and parity support
-- AXI/UART peripheral integration
 
 ---
 
 # Author
 
-Developed as an FPGA-based UART communication project using Verilog HDL and Basys3 FPGA hardware.
+Developed as an FPGA-based UART communication project using Verilog HDL and the Basys3 FPGA platform.
